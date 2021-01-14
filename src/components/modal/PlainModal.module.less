@@ -1,0 +1,42 @@
+.PlainModal {
+  min-width: 25rem;
+  min-height: 15rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftButtons {
+  display: flex;
+
+  > button {
+    margin-right: 1rem;
+  }
+}
+
+.rightButtons {
+  display: flex;
+  justify-content: flex-end;
+
+  > button {
+    margin-left: 1rem;
+  }
+}
+
+.leftButtons,
+.rightButtons {
+  > button {
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
