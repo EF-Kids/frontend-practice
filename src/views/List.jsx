@@ -1,9 +1,25 @@
-import React, { useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useMemo, useEffect } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import styles from './List.module.less';
 
 const List = () => {
   const location = useLocation();
+  const history = useHistory();
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const seed = query.get('seed');
+    let redirectTimeout = null;
+    if (!seed) {
+      redirectTimeout = setTimeout(() => {
+        history.replace('/list?seed=9');
+      }, 0);
+    }
+
+    return () => {
+      clearTimeout(redirectTimeout);
+    };
+  }, [location.search, history.replace]);
 
   const nums = useMemo(() => {
     const query = new URLSearchParams(location.search);
