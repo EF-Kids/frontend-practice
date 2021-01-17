@@ -1,0 +1,32 @@
+.DrawerAnchor {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 9999;
+}
+
+.DrawerOverlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(157, 157, 157, 0.8);
+}
+
+.DrawerContainer {
+  width: fit-content;
+  transition: visibility 1s;
+}
+
+.visible {
+  visibility: visible;
+  pointer-events: all;
+}
+
+.invisible {
+  visibility: hidden;
+  pointer-events: none;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useToggle } from 'react-use';
+import useToggle from 'react-use/esm/useToggle';
 import PlainModal from '../components/modal/PlainModal';
 import styles from './Modal.module.less';
 
