@@ -1,0 +1,50 @@
+.anchor {
+  position: fixed;
+  top: 0.5rem;
+  left: 10rem;
+  width: 0;
+  height: 0;
+  background-color: #fff;
+  color: #000;
+  z-index: 9999;
+}
+
+.button {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 1rem;
+  border: 1px solid #d9d9d9;
+  background-color: transparent;
+  cursor: pointer;
+  user-select: none;
+
+  > i::before {
+    content: "\203a";
+    font-style: normal;
+  }
+}
+
+.RouteDrawer {
+  padding: 1rem;
+  width: 30vw;
+  height: 100vh;
+  background-color: #fff;
+  transition: margin 0.5s;
+
+  &.show {
+    margin-left: 0;
+  }
+
+  &.hide {
+    margin-left: -30vw;
+  }
+}
+
+.link {
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d9d9d9;
+  }
+}
