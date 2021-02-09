@@ -22,7 +22,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.module\.less$/,
@@ -41,11 +41,7 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: /\.module\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'less-loader'],
       },
     ],
   },
