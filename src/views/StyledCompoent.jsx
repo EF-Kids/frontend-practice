@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Blood = styled.div`
   color: red;
-
 `;
 
 const Content = styled(Blood)`
