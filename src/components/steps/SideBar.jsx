@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import IconNet from './icons/IconNet';
 import IconCam from './icons/IconCam';
@@ -17,41 +17,73 @@ const IconNum = styled.div`
   align-items: center;
 `;
 
-const Step = styled.div`
-  background-color: ${(props) => props.active ? '#fff': 'transparent'};
-  box-shadow: ${(props) => props.active ? '0 2px 8px 0 rgba(0, 0, 0, 0.16)' : 'none'};
-  border-radius: ${(props) => props.active ? '39px 0 0 39px' : '0'};
+const Layout = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-  padding: 0 38px 0 16px;
+const Step = styled.div`
+  width: 116px;
   height: 55px;
+  background-color: ${(props) => props.active ? '#fff': 'transparent'};
   color: #adb6be;
+  position: relative;
+  cursor: pointer;
+`;
+
+const StepInner = styled.div`
+  width: calc(100% + 8px);
+  height: 100%;
+  border-radius: ${(props) => props.active ? '39px 0 0 39px' : '0'};
+  box-shadow: ${(props) => props.active ? '0 2px 8px 0 rgba(0, 0, 0, 0.16)' : 'none'};
+  padding: 0 38px 0 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
 `;
 
+const ShadowCutter = styled.div`
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: -16px;
+  bottom: 0;
+  width: 16px;
+  height: 100%;
+  background-color: ${(props) => props.active ? '#fff' : 'transparent'};
+`;
+
+const steps = [
+  { index: 0, icon: IconNet },
+  { index: 1, icon: IconCam },
+  { index: 2, icon: IconMic },
+  { index: 3, icon: IconVol },
+];
+
 const SideBar = (props) => {
-  const { current } = props;
+  const { current, setCurrent } = props;
+
+  const goToStep = useCallback((index) => () => setCurrent(index), [setCurrent]);
 
   return (
-    <div >
-      <Step active={current === 0}>
-        <IconNum>1</IconNum>
-        <IconNet />
-      </Step>
-      <Step active={current === 1}>
-        <IconNum>2</IconNum>
-        <IconCam />
-      </Step>
-      <Step active={current === 2}>
-        <IconNum>3</IconNum>
-        <IconMic />
-      </Step>
-      <Step active={current === 3}>
-        <IconNum>4</IconNum>
-        <IconVol />
-      </Step>
-    </div>
+    <Layout>
+      {steps.map((step) => (
+        <Step
+          key={step.index}
+          active={current === step.index}
+          onClick={goToStep(step.index)}
+        >
+          <StepInner active={current === step.index}>
+            <IconNum>{step.index + 1}</IconNum>
+            <step.icon />
+          </StepInner>
+          <ShadowCutter active={current === step.index} />
+        </Step>
+      ))}
+    </Layout>
   );
 };
 

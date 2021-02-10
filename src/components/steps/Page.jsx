@@ -64,7 +64,11 @@ const Page = () => {
         ) : (
           <S.Container>
             <S.Left>
-              <SideBar current={current} result={result} />
+              <SideBar
+                current={current}
+                result={result}
+                setCurrent={setCurrent}
+              />
             </S.Left>
             <S.Center>
               <Component

@@ -17,17 +17,22 @@ export const Overlay = styled.div`
 export const Container = styled.div`
   width: 667px;
   height: 375px;
+  background-color: #fff;
   display: grid;
   grid-template-columns: 116px auto 129px;
-  grid-template-rows: auto;
+  grid-template-rows: 55px auto;
 `;
 
 export const Left = styled.div`
   grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  z-index: 1;
 `;
 
 export const Center = styled.div`
   grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  z-index: 0;
 
   > * {
     width: 420px;

@@ -49,6 +49,11 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.COMMIT': JSON.stringify(
+        process.env.GIT_COMMIT || process.env.COMMIT_REF || null
+      ),
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './public/index.html'),
     }),
