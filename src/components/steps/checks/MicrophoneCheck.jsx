@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import * as S from './Button.styles';
 import useMicrophoneCheck from './useMicrophoneCheck';
@@ -38,24 +38,37 @@ const MicrophoneCheck = (props) => {
   const { updateResult, goToNextStep } = props;
 
   const [checking, setChecking] = useState(true);
-  const [, setResult] = useState(null);
-  const { microphoneCheck } = useMicrophoneCheck();
+  const [result, setResult] = useState(null);
+  const { getAudioStream, getDecibels } = useMicrophoneCheck();
+  let streamRef = useRef(null);
 
-  const check = useCallback(async () => {
+  const closeStream = useCallback(() => {
+    streamRef.current?.getTracks().forEach(
+      (track) => track.stop(),
+    );
+  }, []);
+
+  const retry = useCallback(async () => {
     setChecking(true);
-    const resultSuccess = await microphoneCheck();
-    const _result = { success: resultSuccess };
-    setResult(_result);
-    updateResult({ [CheckEnum.Microphone]: _result });
-    if (resultSuccess) {
-      goToNextStep();
-    }
+    streamRef.current = await getAudioStream();
+    const decibelResult = await getDecibels(streamRef.current);
+    setResult(decibelResult);
     setTimeout(() => setChecking(false), 0);
-  }, [microphoneCheck, setResult, updateResult, goToNextStep]);
+  }, [setChecking, getAudioStream, getDecibels, setResult]);
 
   useEffect(() => {
-    check();
-  }, [check]);
+    retry();
+    return () => {
+      closeStream();
+    };
+  }, [retry, closeStream]);
+
+  useEffect(() => {
+    updateResult({ [CheckEnum.Microphone]: result });
+    if (result?.success) {
+      setTimeout(goToNextStep, 0);
+    }
+  }, [updateResult, result, goToNextStep]);
 
   return (
     <Layout>
@@ -66,7 +79,7 @@ const MicrophoneCheck = (props) => {
           </Center>
         ) : (
           <S.Buttons>
-            <S.Button primary onClick={check}>Retry</S.Button>
+            <S.Button primary onClick={retry}>Retry</S.Button>
             <S.Button onClick={goToNextStep}>Next</S.Button>
           </S.Buttons>
         )}
