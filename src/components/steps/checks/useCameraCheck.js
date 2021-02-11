@@ -1,10 +1,18 @@
 import { useCallback } from 'react';
-import doSomething from './doSomething';
 
 const useCameraCheck = () => {
-  const cameraCheck = useCallback(async () => doSomething(), []);
+  const getVideoStream = useCallback(
+    async () =>
+      new Promise((resolve) => {
+        window.navigator.mediaDevices
+          .getUserMedia({ video: { width: 320, height: 240 } })
+          .then(resolve)
+          .catch(() => resolve(false));
+      }),
+    []
+  );
 
-  return { cameraCheck };
+  return { getVideoStream };
 };
 
 export default useCameraCheck;
