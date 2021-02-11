@@ -9,6 +9,16 @@ const Layout = styled.div`
   align-items: stretch;
 `;
 
+const Scrollbale = styled.div`
+  width: 600px;
+  height: 179px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 10px;
+`;
+
 const Summary = (props) => {
   const { result, testAgain } = props;
 
@@ -21,7 +31,11 @@ const Summary = (props) => {
     ? <S.Button primary>Close</S.Button>
     : (
       <Layout>
-        <div>{JSON.stringify(result)}</div>
+        <Scrollbale>
+          <pre>
+            {JSON.stringify(result, null, 2)}
+          </pre>
+        </Scrollbale>
         <S.Buttons>
           <S.Button primary onClick={testAgain}>Test again</S.Button>
           <S.Button>Close</S.Button>

@@ -9,6 +9,7 @@ const Layout = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
+  background-color: #f2f2f2;
 `;
 
 const Steps = () => {

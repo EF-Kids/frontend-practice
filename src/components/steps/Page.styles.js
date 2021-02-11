@@ -17,7 +17,7 @@ export const Overlay = styled.div`
 export const Container = styled.div`
   width: 667px;
   height: 375px;
-  background-color: #fff;
+  background-color: transparent;
   display: grid;
   grid-template-columns: 116px auto 129px;
   grid-template-rows: 55px auto;

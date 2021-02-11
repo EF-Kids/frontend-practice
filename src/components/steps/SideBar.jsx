@@ -25,7 +25,7 @@ const Layout = styled.div`
 const Step = styled.div`
   width: 116px;
   height: 55px;
-  background-color: ${(props) => props.active ? '#fff': 'transparent'};
+  background-color: transparent;
   color: #adb6be;
   position: relative;
   cursor: pointer;
@@ -34,6 +34,7 @@ const Step = styled.div`
 const StepInner = styled.div`
   width: calc(100% + 8px);
   height: 100%;
+  background-color: ${(props) => props.active ? '#fff': 'transparent'};
   border-radius: ${(props) => props.active ? '39px 0 0 39px' : '0'};
   box-shadow: ${(props) => props.active ? '0 2px 8px 0 rgba(0, 0, 0, 0.16)' : 'none'};
   padding: 0 38px 0 16px;
