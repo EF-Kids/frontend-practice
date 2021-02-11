@@ -28,7 +28,7 @@ const Summary = (props) => {
   );
 
   return allSuccess
-    ? <S.Button primary>Close</S.Button>
+    ? <S.Button primary onClick={window.close}>Close</S.Button>
     : (
       <Layout>
         <Scrollbale>
@@ -38,7 +38,7 @@ const Summary = (props) => {
         </Scrollbale>
         <S.Buttons>
           <S.Button primary onClick={testAgain}>Test again</S.Button>
-          <S.Button>Close</S.Button>
+          <S.Button onClick={window.close}>Close</S.Button>
         </S.Buttons>
       </Layout>
     );

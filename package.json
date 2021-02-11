@@ -30,7 +30,8 @@
     "react-router-dom": "^5.2.0",
     "react-use": "^15.3.8",
     "styled-components": "^5.2.1",
-    "tailwindcss": "^2.0.3"
+    "tailwindcss": "^2.0.3",
+    "webrtc-adapter": "^7.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
