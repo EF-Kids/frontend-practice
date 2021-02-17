@@ -7,7 +7,7 @@ const Cube = styled(S.Cube)`
   position: absolute;
   bottom: 0;
   left: 0;
-  transform: translate(-45px,30px) rotate(60deg)
+  transform: translate(-45px,30px) rotate(60deg);
 `;
 
 const BottomLeft = () => (

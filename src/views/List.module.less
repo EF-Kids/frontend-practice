@@ -124,10 +124,6 @@
     width: 100%;
     border-collapse: collapse;
 
-    tbody .row {
-      border-top: 1px solid #d9d9d9;
-    }
-
     .row {
       > th:nth-child(1),
       > td:nth-child(1) {
@@ -143,6 +139,10 @@
           max-width: 20rem;
         }
       }
+    }
+
+    tbody .row {
+      border-top: 1px solid #d9d9d9;
     }
 
     .column:extend(.textEllipsis),

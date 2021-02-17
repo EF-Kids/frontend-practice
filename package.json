@@ -6,7 +6,10 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "lint": "eslint --ext .js,.jsx src"
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:styled",
+    "lint:css": "stylelint \"src/**/*.{css,less}\"",
+    "lint:styled": "stylelint \"src/**/*.{js,jsx}\" --config .stylelintrc.styled.json",
+    "lint:js": "eslint --ext .js,.jsx src"
   },
   "repository": {
     "type": "git",
@@ -56,6 +59,13 @@
     "prettier": "^2.2.1",
     "react-hot-loader": "^4.13.0",
     "style-loader": "^2.0.0",
+    "stylelint": "^13.10.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-prettier": "^1.1.2",
+    "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.1.1",
     "webpack": "^5.14.0",
     "webpack-cli": "^4.3.1",
