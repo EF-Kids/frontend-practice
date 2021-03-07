@@ -4,6 +4,7 @@ import App from './App';
 import 'webrtc-adapter';
 import 'normalize.css/normalize.css';
 import 'tailwindcss/tailwind.css';
+import './index.css';
 
 window.COMMIT = process.env.COMMIT;
 render(<App />, document.getElementById('root'));
