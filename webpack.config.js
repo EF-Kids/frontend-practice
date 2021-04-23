@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   devServer: {
-    contentBase: path.resolve(__dirname, './dist'),
+    static: path.resolve(__dirname, './dist'),
     port: 2021,
   },
   entry: path.resolve(__dirname, './src/index.js'),
@@ -47,6 +47,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+  },
+  stats: {
+    modules: false,
   },
   plugins: [
     new webpack.DefinePlugin({
